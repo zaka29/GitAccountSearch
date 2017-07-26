@@ -1,8 +1,7 @@
-// read: https://gist.github.com/caspyin/2288960
 import React, { Component } from 'react';
-import axios from 'axios';
 import * as requests from './requests.js';
 import SearchInput from './components/SearchInput.js'
+import SearchResults from './components/SerchResults.js'
 
 export default class App extends Component {
     
@@ -10,39 +9,50 @@ export default class App extends Component {
         super(props);
 
         this.state = {
-            people: [],
-            skills: [],
-            interests: [],
-            richestPerson: '',
-            isLoaded: false,
+            gitHubUsers: [],
+            searchStatus: 'start',
+            searchText: '',
         };
     }
 
-    // Search Text here
-    componentDidMount() {
-    	axios.all([requests.getAllPeople(), requests.getPeopleSkills(), requests.getInterests(), requests.getRichest()])
-    		.then(axios.spread((people, skills, interests, richest) => {
-				this.setState({
-    				people: people.data,
-    				skills: skills.data,
-    				interests: interests.data,
-    				richestPerson: richest.data.richestPerson,
-    				isLoaded: true,
-    			});
-            }));
+    handleSearchChange(text) {
+        this.setState({
+            searchText: text,
+        });
+
+        if(text.length === 0){
+            this.setState({ gitHubUsers: [], searchStatus: 'start' })
+        }
+
+        if(text.length < 3 && text.length > 0){
+            this.setState({  searchStatus: 'update' })
+        }
+
+        if(text.length >= 3) {
+            this.setState({ searchStatus: 'request' });
+
+            requests.getGitHubUsersByName(text)
+                .then((response) => {
+                    console.log('Git hub response: ', response);
+                    this.setState({
+                        gitHubUsers: response.data.items,
+                        searchStatus: 'complete',
+                    })
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     }
 
     render() {
-    	const { isLoaded } = this.state;
-
-        if (!isLoaded) {
-        	return (
-        		<h4>Loading...</h4>
-    		)
-        }
+    	const { searchText, gitHubUsers, searchStatus } = this.state;
 
         return ( 
-            <PeopleTable {...this.state} />
+            <div>
+                <SearchInput searchText={searchText} onSearchChange={this.handleSearchChange.bind(this)} />
+                <SearchResults gitHubUsers={gitHubUsers} searchStatus={searchStatus} />
+            </div>
         )
     }
 }

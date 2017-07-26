@@ -8,6 +8,9 @@ class SearchInput extends Component {
     }
 
     handleChange(e) {
+        console.log('entry - ', e.target.value)
+        console.log('entry - length', e.target.value.length)
+
         this.props.onSearchChange(e.target.value);
     }
 

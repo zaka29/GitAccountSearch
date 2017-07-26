@@ -1,45 +1,34 @@
 import React, { Component } from 'react';
+import Message from './Message.js';
+import GitUser from './GitUser.js';
 
 class SearchResults extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isSearchInProgress: false,
-            isSearchComplete: false,
-        }
-    }
-
     render() {
-        const {gitUsers, searchStatus} = this.props.searchResults;
-        if(!searchStatus) {
-            return (
-                <Message text='Enter user account name' spinner={false} />
-            )
+        const {gitHubUsers, searchStatus} = this.props;
+
+        if( searchStatus === 'start' ) {
+            return  <Message text='Enter user account name' spinner={false} />
         }
 
-        if(searchStatus == 'update') {
-            return (
-                <Message text='Please type at least 3 characters..' spinner={false} />
-            )
+        if(searchStatus === 'update'){
+            return <Message text='Please type at least 3 characters..' spinner={false} />
         }
 
-        if(searchStatus == 'request') {
-            return (
-                <Message text='Fetching users...' spinner={true} />
-            )
+        if(searchStatus === 'request'){
+            return <Message text='Fetching users...' spinner={true} />
         }
 
-        return (
-            <div>
-                {
-                    gitUsers.map(( user, i )=>{
-                        <GitUserComponent user />
-                    })
-                }
-            </div>
-        );
+        if( searchStatus === 'complete' ) {
+            return (
+                <div>
+                    <Message text={`Displayed results: ${gitHubUsers.length}`} spinner={false} />
+                    {gitHubUsers.map(( user, i ) => {
+                        return <GitUser user={user} key={i} />
+                    })}
+                </div>
+            )
+        }
     }
 }
 
