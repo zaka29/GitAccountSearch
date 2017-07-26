@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import * as requests from './requests.js';
-import PeopleTable from './components/PeopleTable';
+import SearchInput from './components/SearchInput.js'
 
 export default class App extends Component {
     
@@ -17,6 +17,7 @@ export default class App extends Component {
         };
     }
 
+    // Search Text here
     componentDidMount() {
     	axios.all([requests.getAllPeople(), requests.getPeopleSkills(), requests.getInterests(), requests.getRichest()])
     		.then(axios.spread((people, skills, interests, richest) => {
