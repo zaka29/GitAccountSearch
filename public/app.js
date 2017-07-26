@@ -1,3 +1,4 @@
+// read: https://gist.github.com/caspyin/2288960
 import React, { Component } from 'react';
 import axios from 'axios';
 import * as requests from './requests.js';
