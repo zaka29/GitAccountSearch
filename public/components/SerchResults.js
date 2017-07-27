@@ -8,12 +8,14 @@ class SearchResults extends Component {
 
         if( searchStatus === 'complete' ) {
             return (
-                <table>
+                <table className="table">
                     <thead>
-                        <th>#</th>
-                        <th>Login</th>
-                        <th>Type</th>
-                        <th>Score</th>
+                        <tr>
+                            <th>#</th>
+                            <th>Login</th>
+                            <th>Type</th>
+                            <th>Score</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {gitHubUsers.map(( user, i ) => {

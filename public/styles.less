@@ -6,6 +6,33 @@
     font-weight: 300;
 }
 
+.alert-info {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    min-height: 90px;
+    .loader-container {
+        margin-left: 20px;
+        >img {
+            width:50px;
+        }
+    }
+}
+
+.table>thead>tr>th {
+    font-size: 1.8rem;
+}
+.table>tbody>tr>td {
+    vertical-align: middle;
+    font-size: 1.6rem;
+}
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 60px;
+}
+
 .user-item {
     display: flex;
     >img {
@@ -16,7 +43,7 @@
 }
 
 .search-results-empty {
-    padding: 2rem;
+    padding: 20px;
     > img {
         opacity: .2;
         height:150px;

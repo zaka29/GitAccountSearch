@@ -3,19 +3,19 @@ import Loader from './Loader.js';
 const Message = ({searchStatus}) => {
 
     if( searchStatus === 'start' ) {
-        return  <div>Start typing to search..</div>
+        return  <div className="alert alert-info">Start typing to search..</div>
     }
 
     if(searchStatus === 'update'){
-        return <div>Please type at least 3 characters..  </div>
+        return <div className="alert alert-info">Please type at least 3 characters..  </div>
     }
 
     if(searchStatus === 'request'){
-        return <div>Fetching users...</div>
+        return <div className="alert alert-info">Fetching users... <Loader /></div>
     }
 
     if(searchStatus === 'complete'){
-        return <div>Done :)</div>
+        return <div className="alert alert-info">Done :)</div>
     }
 };
 

@@ -34,7 +34,6 @@ export default class App extends Component {
 
             requests.getGitHubUsersByName(text)
                 .then((response) => {
-                    console.log('Git hub response: ', response);
                     this.setState({
                         gitHubUsers: response.data.items,
                         searchStatus: 'complete',
@@ -50,7 +49,7 @@ export default class App extends Component {
     	const { searchText, gitHubUsers, searchStatus } = this.state;
 
         return ( 
-            <div className="container">
+            <div>
                 <div className="panel panel-default">
                     <div className="panel-heading">
                         <SearchInput searchText={searchText} onSearchChange={this.handleSearchChange.bind(this)} />

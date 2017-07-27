@@ -5,7 +5,7 @@ const GitUser = ({ user }) => {
     return (
         <tr>
             <td>
-                <img src={user.avatar_url} alt=""/>
+                <img className="user-avatar" src={user.avatar_url} alt=""/>
             </td>
             <td>
                 { user.login }
