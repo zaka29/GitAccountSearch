@@ -14,11 +14,11 @@ class SearchInput extends Component {
     render() {
         const searchText = this.props.searchText;
         return (
-            <fieldset>
-                <legend>Search for Git User</legend>
-                <input value={searchText}
-                       onChange={this.handleChange} />
-            </fieldset>
+
+            <div className="form-group">
+                <input  className="form-control input-lg" value={searchText} onChange={this.handleChange} placeholder="Search for Git User" />
+            </div>
+
         );
     }
 }

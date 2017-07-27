@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as requests from './requests.js';
 import SearchInput from './components/SearchInput.js'
 import SearchResults from './components/SerchResults.js'
+import Message from './components/Message.js';
 
 export default class App extends Component {
     

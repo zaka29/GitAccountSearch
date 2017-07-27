@@ -24,8 +24,8 @@ class SearchResults extends Component {
             )
         }
         return (
-            <div>
-                <img src="../../github-logo.jpeg" alt="" />
+            <div className="search-results-empty">
+                <img className="img-responsive" src="../../github-logo.jpeg" alt="" />
             </div>
         )
     }

@@ -3,7 +3,7 @@ import Loader from './Loader.js';
 const Message = ({searchStatus}) => {
 
     if( searchStatus === 'start' ) {
-        return  <div>Enter user account name</div>
+        return  <div>Start typing to search..</div>
     }
 
     if(searchStatus === 'update'){
@@ -11,10 +11,10 @@ const Message = ({searchStatus}) => {
     }
 
     if(searchStatus === 'request'){
-        return <div>Fetching users...<Loader /></div>
+        return <div>Fetching users...</div>
     }
 
-    if(searchStatus === 'request'){
+    if(searchStatus === 'complete'){
         return <div>Done :)</div>
     }
 };
